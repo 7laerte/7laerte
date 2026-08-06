@@ -1,3 +1,4 @@
+<img width="1983" height="793" alt="ChatGPT Image 3 de ago  de 2026, 20_42_17" src="https://github.com/user-attachments/assets/40f3a5bd-164b-490b-b214-80639fe0888c" />
 ## segue aee!
 
 
