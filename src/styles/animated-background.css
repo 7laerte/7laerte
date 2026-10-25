@@ -1,0 +1,56 @@
+/* Aplicar à página somente quando houver camadas separadas de fundo e conteúdo.
+ * .animated-background-scene: contêiner da tela.
+ * .animated-background-layer: camada decorativa com a imagem de fundo existente.
+ * .animated-background-content: conteúdo interativo, fora da camada animada.
+ * A camada decorativa deve receber aria-hidden="true".
+ */
+.animated-background-scene {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.animated-background-scene > .animated-background-layer {
+  position: absolute;
+  inset: -4%;
+  z-index: 0;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+  animation: wallpaper-gentle-drift 36s ease-in-out infinite alternate;
+}
+
+.animated-background-scene > .animated-background-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / var(--animated-background-dimming, 0.28));
+}
+
+.animated-background-scene > .animated-background-content {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes wallpaper-gentle-drift {
+  0% {
+    transform: translate3d(-1%, -0.6%, 0) scale(1.04);
+  }
+  50% {
+    transform: translate3d(0.5%, 0.8%, 0) scale(1.07);
+  }
+  100% {
+    transform: translate3d(1%, -0.3%, 0) scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-background-scene > .animated-background-layer {
+    animation: none;
+    transform: none;
+  }
+}
